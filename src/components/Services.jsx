@@ -89,7 +89,7 @@ function SectionHeader({ className = '' }) {
 // ─── Mobile: touch-scroll ────────────────────────────────────────────────────
 function MobileServices() {
   return (
-    <section id="trainingen" className="bg-[#f8fafc] overflow-hidden">
+    <section id="trainingen" className="bg-[#f8fafc]" style={{ maxWidth: '100vw', overflowX: 'clip' }}>
       {/* Sticky header stays visible while swiping cards */}
       <div className="sticky top-[60px] z-10 bg-[#f8fafc] px-5 pt-10 pb-5 border-b border-slate-100/0">
         <SectionHeader />
