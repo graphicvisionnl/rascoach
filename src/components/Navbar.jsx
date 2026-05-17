@@ -28,10 +28,10 @@ export default function Navbar() {
           initial={{ y: -60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className={`pointer-events-auto flex items-center justify-between gap-6 px-5 py-3 rounded-2xl transition-all duration-300 w-full max-w-3xl ${
+          className={`pointer-events-auto flex items-center justify-between gap-4 px-4 md:px-5 py-2.5 md:py-3 rounded-2xl transition-all duration-300 w-full max-w-3xl ${
             scrolled
-              ? 'bg-white/90 backdrop-blur-xl shadow-lg shadow-black/5 border border-slate-100'
-              : 'bg-white/80 backdrop-blur-md shadow-md shadow-black/5 border border-white/60'
+              ? 'bg-white/95 backdrop-blur-xl shadow-lg shadow-black/5 border border-slate-100'
+              : 'bg-white/85 backdrop-blur-md shadow-md shadow-black/5 border border-white/60'
           }`}
         >
           <a href="#home" className="font-black text-xl tracking-tight flex-shrink-0">
