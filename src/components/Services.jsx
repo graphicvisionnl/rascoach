@@ -71,16 +71,16 @@ function ServiceCard({ service }) {
   )
 }
 
-function SectionHeader() {
+function SectionHeader({ className = '' }) {
   return (
-    <div className="px-5 md:px-12 mb-8 max-w-xl">
-      <p className="text-[#2563eb] text-sm font-semibold tracking-wide uppercase mb-3">Wat ik aanbied</p>
-      <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight mb-3">
+    <div className={`max-w-xl ${className}`}>
+      <p className="text-[#2563eb] text-sm font-semibold tracking-wide uppercase mb-2">Wat ik aanbied</p>
+      <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight mb-2">
         Training voor<br />
         <span className="serif-italic font-normal">ieder doel</span>
       </h2>
       <p className="text-slate-400 text-sm md:text-base">
-        Scroll om alle trainingsvormen te ontdekken.
+        Swipe om alle trainingsvormen te ontdekken.
       </p>
     </div>
   )
@@ -89,16 +89,24 @@ function SectionHeader() {
 // ─── Mobile: touch-scroll ────────────────────────────────────────────────────
 function MobileServices() {
   return (
-    <section id="trainingen" className="py-16 bg-[#f8fafc]">
-      <SectionHeader />
-      <div className="flex gap-4 overflow-x-auto px-5 pb-4 snap-x snap-mandatory scrollbar-none" style={{ scrollbarWidth: 'none' }}>
+    <section id="trainingen" className="bg-[#f8fafc] overflow-hidden">
+      {/* Sticky header stays visible while swiping cards */}
+      <div className="sticky top-[60px] z-10 bg-[#f8fafc] px-5 pt-10 pb-5 border-b border-slate-100/0">
+        <SectionHeader />
+      </div>
+
+      {/* Touch-scrollable card row */}
+      <div
+        className="flex gap-4 overflow-x-auto px-5 pb-8 pt-4 snap-x snap-mandatory"
+        style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
+      >
         {services.map((s) => (
-          <div key={s.title} className="snap-start">
+          <div key={s.title} className="snap-start flex-shrink-0">
             <ServiceCard service={s} />
           </div>
         ))}
-        {/* Trailing spacer so last card isn't flush against edge */}
-        <div className="flex-shrink-0 w-4" />
+        {/* trailing spacer */}
+        <div className="flex-shrink-0 w-1" />
       </div>
     </section>
   )
@@ -138,7 +146,7 @@ function DesktopServices() {
       className="relative bg-[#f8fafc]"
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-        <SectionHeader />
+        <SectionHeader className="px-12 mb-8" />
 
         <motion.div ref={trackRef} style={{ x }} className="flex gap-5 pl-12 pr-12">
           {services.map((s) => <ServiceCard key={s.title} service={s} />)}
